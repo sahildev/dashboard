@@ -41,7 +41,6 @@ public class ProjectController {
 		return project;	
 	}
 	
-	@SuppressWarnings("unused")
 	private ProjectBean prepareProjectBean(Project project){
 		ProjectBean bean = new ProjectBean();
 		bean.setName(project.getProjName());
