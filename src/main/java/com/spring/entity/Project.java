@@ -12,48 +12,52 @@ import javax.persistence.GenerationType;
 public class Project {
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "id")
-	private long id;
+	@Column(name = "projid")
+	private Integer projId;
 	
-	@Column(name = "name")
-	private String name;
+	@Column(name = "projname")
+	private String projName;
 	
-	@Column(name = "category")
-	private String category;
+	@Column(name = "projcategory")
+	private String projCategory;
 	
-	@Column(name = "status")
-	private String status;
-
-	public long getId() {
-		return id;
+	@Column(name = "projstatus")
+	private String projStatus;
+	
+	public Integer getProjId() {
+		return projId;
 	}
 
-	public void setId(long id) {
-		this.id = id;
+	public void setProjId(Integer projId) {
+		this.projId = projId;
 	}
 
-	public String getName() {
-		return name;
+	public String getProjName() {
+		return projName;
 	}
 
-	public void setName(String name) {
-		this.name = name;
+	public void setProjName(String projName) {
+		this.projName = projName;
 	}
 
-	public String getCategory() {
-		return category;
+	public String getProjCategory() {
+		return projCategory;
 	}
 
-	public void setCategory(String category) {
-		this.category = category;
+	public void setProjCategory(String projCategory) {
+		this.projCategory = projCategory;
 	}
 
-	public String getStatus() {
-		return status;
+	public String getProjStatus() {
+		return projStatus;
 	}
 
-	public void setStatus(String status) {
-		this.status = status;
+	public void setProjStatus(String projStatus) {
+		this.projStatus = projStatus;
 	}
+
+	
+
+
 
 }

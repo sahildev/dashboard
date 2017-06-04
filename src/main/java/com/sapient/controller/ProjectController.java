@@ -2,13 +2,13 @@ package com.sapient.controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.ui.Model;
-import org.springframework.validation.BindingResult;
 
+import com.spring.bean.ProjectBean;
 import com.spring.entity.Project;
 import com.spring.service.ProjectService;
 
@@ -23,16 +23,31 @@ public class ProjectController {
 		return new ModelAndView("index");
 	}
 	
-	@RequestMapping(value = "/save", method = RequestMethod.POST)
-	public ModelAndView saveEmployee(@ModelAttribute("command") Project projectobj, 
+	@RequestMapping(value = "/saveProject", method = RequestMethod.POST)
+	public ModelAndView saveProject(@ModelAttribute("command") ProjectBean projectBean, 
 			BindingResult result) {
-		Project project = prepareModel(projectobj);
+		Project project = prepareModel(projectBean);
 		projectService.addProject(project);
-		return new ModelAndView("redirect:/add.html");
+		return new ModelAndView("redirect:/addProject.html");
 	}
 	
-	private Project prepareModel(Project project){
-		Project project1 = new Project();
-		return project1;
+	private Project prepareModel(ProjectBean projectBean){
+		Project project = new Project();
+		project.setProjName(projectBean.getName());
+		project.setProjCategory(projectBean.getCategory());
+		project.setProjStatus(projectBean.getStatus());
+		project.setProjId(projectBean.getId());
+		projectBean.setId(null);
+		return project;	
+	}
+	
+	@SuppressWarnings("unused")
+	private ProjectBean prepareProjectBean(Project project){
+		ProjectBean bean = new ProjectBean();
+		bean.setName(project.getProjName());
+		bean.setCategory(project.getProjCategory());
+		bean.setStatus(project.getProjStatus());
+		bean.setId(project.getProjId());		
+		return bean;
 	}
 }
