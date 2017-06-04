@@ -28,7 +28,7 @@ public class ProjectController {
 			BindingResult result) {
 		Project project = prepareModel(projectBean);
 		projectService.addProject(project);
-		return new ModelAndView("redirect:/addProject.html");
+		return new ModelAndView("redirect:/addProject.jsp");
 	}
 	
 	private Project prepareModel(ProjectBean projectBean){
@@ -41,6 +41,7 @@ public class ProjectController {
 		return project;	
 	}
 	
+	@SuppressWarnings("unused")
 	private ProjectBean prepareProjectBean(Project project){
 		ProjectBean bean = new ProjectBean();
 		bean.setName(project.getProjName());
